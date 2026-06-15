@@ -697,41 +697,49 @@
     const musicIcon = document.getElementById('musicIcon');
     let musicStarted = false;
 
-    function playMusic() {
-        bgMusic.play().then(() => {
-            musicStarted = true;
-            musicIcon.className = 'fa-solid fa-pause';
-            musicToggle.classList.add('playing');
-        }).catch(() => {});
+    function setPlaying() {
+        musicStarted = true;
+        musicIcon.className = 'fa-solid fa-pause';
+        musicToggle.classList.add('playing');
     }
 
-    function pauseMusic() {
-        bgMusic.pause();
+    function setStopped() {
         musicIcon.className = 'fa-solid fa-music';
         musicToggle.classList.remove('playing');
     }
 
     musicToggle.addEventListener('click', function() {
         if (bgMusic.paused) {
-            playMusic();
+            bgMusic.play().then(setPlaying).catch(() => {});
         } else {
-            pauseMusic();
+            bgMusic.pause();
+            setStopped();
         }
     });
 
-    // Intentar autoplay; si falla, reproducir al primer toque
-    playMusic();
-    if (!musicStarted) {
-        function startOnInteraction() {
-            if (!musicStarted) playMusic();
-            document.removeEventListener('click', startOnInteraction);
-            document.removeEventListener('touchstart', startOnInteraction);
-            document.removeEventListener('scroll', startOnInteraction);
+    // Autoplay: intentar reproducir; si falla, esperar primera interacción
+    function startOnInteraction() {
+        if (!musicStarted) {
+            bgMusic.play().then(() => {
+                setPlaying();
+                cleanup();
+            }).catch(() => {});
         }
+    }
+    function cleanup() {
+        document.removeEventListener('click', startOnInteraction);
+        document.removeEventListener('touchstart', startOnInteraction);
+        document.removeEventListener('scroll', startOnInteraction);
+    }
+
+    bgMusic.play().then(() => {
+        setPlaying();
+    }).catch(() => {
+        // Autoplay bloqueado — reproducir al primer toque/scroll
         document.addEventListener('click', startOnInteraction);
         document.addEventListener('touchstart', startOnInteraction);
-        document.addEventListener('scroll', startOnInteraction);
-    }
+        document.addEventListener('scroll', startOnInteraction, { once: true });
+    });
 
     // RSVP FORM + WhatsApp (número real a cambiar)
     const form = document.getElementById('weddingRsvpForm');
