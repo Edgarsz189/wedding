@@ -464,8 +464,10 @@
             <div class="countdown-item"><span id="seconds" class="countdown-number">00</span><span class="countdown-label">Segundos</span></div>
         </div>
 
-        <!-- Iframe oculto de Google Drive para audio -->
-        <iframe id="bgMusicFrame" src="https://drive.google.com/file/d/1UEuYeF4-nwlALXGe9HHpWDZDCldkilE7/preview" allow="autoplay" style="display:none;" title="Música de fondo"></iframe>
+        <!-- Audio de fondo -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="assets/baby_im_yours.mp3" type="audio/mpeg">
+        </audio>
     </div>
 </header>
 
@@ -689,32 +691,47 @@
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // REPRODUCTOR DE MÚSICA - iframe de Google Drive
-    const musicFrame = document.getElementById('bgMusicFrame');
+    // REPRODUCTOR DE MÚSICA
+    const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = document.getElementById('musicIcon');
-    const musicSrc = 'https://drive.google.com/file/d/1UEuYeF4-nwlALXGe9HHpWDZDCldkilE7/preview';
-    let isPlaying = true; // iframe carga y reproduce automáticamente
+    let musicStarted = false;
 
-    // Actualizar icono al cargar (asume que está sonando)
-    musicIcon.className = 'fa-solid fa-pause';
-    musicToggle.classList.add('playing');
-
-    musicToggle.addEventListener('click', function() {
-        if (isPlaying) {
-            // Pausar: quitar el src del iframe
-            musicFrame.src = '';
-            musicIcon.className = 'fa-solid fa-music';
-            musicToggle.classList.remove('playing');
-            isPlaying = false;
-        } else {
-            // Reanudar: volver a cargar el iframe
-            musicFrame.src = musicSrc;
+    function playMusic() {
+        bgMusic.play().then(() => {
+            musicStarted = true;
             musicIcon.className = 'fa-solid fa-pause';
             musicToggle.classList.add('playing');
-            isPlaying = true;
+        }).catch(() => {});
+    }
+
+    function pauseMusic() {
+        bgMusic.pause();
+        musicIcon.className = 'fa-solid fa-music';
+        musicToggle.classList.remove('playing');
+    }
+
+    musicToggle.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            playMusic();
+        } else {
+            pauseMusic();
         }
     });
+
+    // Intentar autoplay; si falla, reproducir al primer toque
+    playMusic();
+    if (!musicStarted) {
+        function startOnInteraction() {
+            if (!musicStarted) playMusic();
+            document.removeEventListener('click', startOnInteraction);
+            document.removeEventListener('touchstart', startOnInteraction);
+            document.removeEventListener('scroll', startOnInteraction);
+        }
+        document.addEventListener('click', startOnInteraction);
+        document.addEventListener('touchstart', startOnInteraction);
+        document.addEventListener('scroll', startOnInteraction);
+    }
 
     // RSVP FORM + WhatsApp (número real a cambiar)
     const form = document.getElementById('weddingRsvpForm');
