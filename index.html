@@ -727,18 +727,22 @@
         }
     }
     function cleanup() {
-        document.removeEventListener('click', startOnInteraction);
-        document.removeEventListener('touchstart', startOnInteraction);
-        document.removeEventListener('scroll', startOnInteraction);
+        document.removeEventListener('click', startOnInteraction, true);
+        document.removeEventListener('touchstart', startOnInteraction, true);
+        document.removeEventListener('touchend', startOnInteraction, true);
+        document.removeEventListener('pointerdown', startOnInteraction, true);
+        document.removeEventListener('keydown', startOnInteraction, true);
     }
 
     bgMusic.play().then(() => {
         setPlaying();
     }).catch(() => {
-        // Autoplay bloqueado — reproducir al primer toque/scroll
-        document.addEventListener('click', startOnInteraction);
-        document.addEventListener('touchstart', startOnInteraction);
-        document.addEventListener('scroll', startOnInteraction, { once: true });
+        // Autoplay bloqueado — reproducir al primer toque real del usuario
+        document.addEventListener('click', startOnInteraction, true);
+        document.addEventListener('touchstart', startOnInteraction, true);
+        document.addEventListener('touchend', startOnInteraction, true);
+        document.addEventListener('pointerdown', startOnInteraction, true);
+        document.addEventListener('keydown', startOnInteraction, true);
     });
 
     // RSVP FORM + WhatsApp (número real a cambiar)
