@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Boda Vicky & Edgar | 14 Nov 2026</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', Arial, sans-serif;
+            background-color: #FFFFFF;   /* blanco de fondo */
+            color: #000000;              /* negro para letras generales */
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* tipografía auxiliar */
+        h1, h2, h3, .section-title, .parents-title, .couple-names {
+            font-family: 'Playfair Display', Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        /* ========== HEADER / HERO ========== */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.55) 80%), 
+                        url('https://lh3.googleusercontent.com/pw/AP1GczOGL-U3abHhUnik5Y3SQznO9wgA6GuQUmDPebEk9hrjbTofuDKmQobT9ZabtZRXgETTnxwbsrCzInb1VHYrkb2bBeAAGkxdzFj5st_d5E9LjI3tjbo=w2400');
+            background-size: cover;
+            background-position: center 30%;
+            text-align: center;
+            padding: 220px 20px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 90vh;
+        }
+        .hero_footer {
+            background: linear-gradient(rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 50%, rgba(0, 0, 0, 0.0) 80%), 
+                        url('https://lh3.googleusercontent.com/pw/AP1GczOHFTGXuDySj7mpYiO1-KG5NYcVMhLCXUFg_ToHhS13nPMKmykDBrc1KshsNgVtDZMSggw0lzrgLjE712vmfWVDAJZtMHbTL9yJbFLZn5pJIaAxGaE=w2400');
+            background-size: cover;
+            background-position: center 30%;
+            text-align: center;
+            padding: 220px 20px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 90vh;
+        }
+
+        .couple-names {
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+            margin-bottom: 0.3rem;
+        }
+
+        .wedding-date {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: #FFE4C4;
+        }
+
+        /* cuenta regresiva */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 8px 14px;
+            min-width: 70px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+            color: #FFE4C4;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* Reproductor musical flotante */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #B22222;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .music-btn:hover {
+            background: #8b1a1a;
+            transform: scale(1.1);
+        }
+        .music-btn.playing {
+            animation: pulse-music 1.5s infinite;
+        }
+        @keyframes pulse-music {
+            0%, 100% { box-shadow: 0 4px 15px rgba(178,34,34,0.3); }
+            50% { box-shadow: 0 4px 25px rgba(178,34,34,0.6); }
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            font-size: 2.3rem;
+            text-align: center;
+            color: #B22222;      /* títulos rojo fuego */
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        /* SECCIÓN PADRES */
+        .parents-section {
+            background: linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
+                        url('https://lh3.googleusercontent.com/pw/AP1GczMgcqPQr21VSrwFtxVDtrtjBm6QSWHjGL2ovtzBVVol5OVfI3So97DdQVAw7X9YxQtkFS0CTl2Yq0mTqB6HDWL-rFJhI7tJWYyahv6ob0drecYjhAg=w2400');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .parents-container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .parents-names {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin: 30px 0 25px;
+        }
+        .parent-group h3 {
+            color: #B22222;
+            font-size: 1.9rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .parent-group p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        .invitation-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-top: 35px;
+            padding: 20px;
+            background: transparent;
+            border-radius: 40px;
+            display: inline-block;
+            width: auto;
+            color: #2c2c2c;
+        }
+
+        /* GALERÍA DE FOTOS DISTRIBUIDA */
+        .photo-strip {
+            padding: 10px 0;
+            background: #FFFFFF;
+            overflow: hidden;
+        }
+        .photo-strip .container {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+        .photo-strip .photo-item {
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            flex: 1 1 100%;
+            max-width: 100%;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .photo-strip .photo-item:hover {
+            transform: none;
+        }
+        .photo-strip .photo-item img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-strip .photo-caption {
+            display: none;
+        }
+
+        /* Foto destacada individual */
+        .featured-photo {
+            text-align: center;
+            padding: 20px 0;
+            background: #FFFFFF;
+        }
+        .featured-photo img {
+            max-width: 500px;
+            width: 90%;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        .featured-photo .photo-caption {
+            font-size: 1.1rem;
+            color: #B22222;
+            margin-top: 12px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #B22222;
+            margin: 18px auto 0;
+            border-radius: 3px;
+        }
+
+        /* DETALLES (ceremonia, recepción, código) */
+        .details-section {
+            background: 0xFFFFFF;
+        }
+        .info-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 35px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .info-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 32px 24px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            border: 1px solid #f0e6de;
+            transition: 0.2s;
+        }
+        .info-card i {
+            font-size: 2.8rem;
+            color: #B22222;
+            margin-bottom: 18px;
+        }
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: #B22222;
+            margin-bottom: 15px;
+        }
+        .info-card p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            color: #B22222;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed #B22222;
+        }
+        .map-link:hover {
+            color: #8b1a1a;
+        }
+
+        /* SECCIÓN REGALOS */
+        .gift-section {
+            background: #FFFFFF;
+            padding: 40px 0 60px;
+        }
+        .gift-card {
+            
+            margin: 0 auto;
+            
+            
+            padding: 35px 30px;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
+                        url('https://lh3.googleusercontent.com/pw/AP1GczMgcqPQr21VSrwFtxVDtrtjBm6QSWHjGL2ovtzBVVol5OVfI3So97DdQVAw7X9YxQtkFS0CTl2Yq0mTqB6HDWL-rFJhI7tJWYyahv6ob0drecYjhAg=w2400');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+        .gift-card h3 {
+            color: #B22222;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .gift-card p {
+            font-size: 1.15rem;
+            margin: 16px 0;
+        }
+        .buzon-icon {
+            font-size: 1.5rem;
+            color: #B22222;
+            margin: 15px 0;
+        }
+        .account-number {
+            background: #eee6df;
+            padding: 12px;
+            border-radius: 60px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* RSVP whatsapp */
+        .rsvp-section {
+            background: #FFFFFF;
+            padding: 50px 0 40px;
+        }
+        .rsvp-form {
+            max-width: 620px;
+            margin: 20px auto;
+            background: #FFFFFF;
+            padding: 35px;
+            border-radius: 32px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border: 1px solid #f2e4da;
+        }
+        .form-group {
+            margin-bottom: 22px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            font-family: 'Playfair Display', Arial;
+            font-size: 1rem;
+        }
+        textarea {
+            border-radius: 24px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .submit-btn {
+            background-color: #B22222;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #8b1a1a;
+        }
+        .whatsapp-instructions {
+            background: #F9F1EA;
+            border-left: 5px solid #B22222;
+            padding: 15px 20px;
+            border-radius: 24px;
+            margin-bottom: 20px;
+        }
+        .frase-final {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #B22222;
+            margin: 40px 0 30px;
+            font-style: italic;
+            letter-spacing: -0.3px;
+        }
+        footer {
+            background: #1e1e1e;
+            color: #eee;
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 750px) {
+            .couple-names { font-size: 2.2rem; }
+            .wedding-date { font-size: 1rem; }
+            .hero { min-height: 70vh; padding: 150px 15px 30px; }
+            .photo-strip .photo-item img { height: 320px; }
+            .photo-strip .photo-item { max-width: 100%; }
+            .featured-photo img { max-width: 90%; }
+            .countdown-item { min-width: 70px; padding: 8px; }
+            .countdown-number { font-size: 2rem; }
+            .parents-names { gap: 30px; }
+            .parent-group h3 { font-size: 1.5rem; }
+            .info-card { width: 100%; max-width: 300px; }
+            .frase-final { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ENCABEZADO HERO con imagen nueva y cuenta regresiva -->
+<header class="hero">
+    <div class="container">
+        <h1 class="couple-names">Vicky & Edgar</h1>
+        <p class="wedding-date">14 de noviembre de 2026</p>
+        
+        <div class="countdown">
+            <div class="countdown-item"><span id="days" class="countdown-number">00</span><span class="countdown-label">Días</span></div>
+            <div class="countdown-item"><span id="hours" class="countdown-number">00</span><span class="countdown-label">Horas</span></div>
+            <div class="countdown-item"><span id="minutes" class="countdown-number">00</span><span class="countdown-label">Minutos</span></div>
+            <div class="countdown-item"><span id="seconds" class="countdown-number">00</span><span class="countdown-label">Segundos</span></div>
+        </div>
+
+        <!-- Iframe oculto de Google Drive para audio -->
+        <iframe id="bgMusicFrame" src="https://drive.google.com/file/d/1UEuYeF4-nwlALXGe9HHpWDZDCldkilE7/preview" allow="autoplay" style="display:none;" title="Música de fondo"></iframe>
+    </div>
+</header>
+
+<!-- Botón flotante de música -->
+<button class="music-btn" id="musicToggle" title="Reproducir / Pausar música">
+    <i class="fa-solid fa-music" id="musicIcon"></i>
+</button>
+
+<!-- SECCIÓN PADRES (intercambio de nombres según lo solicitado) -->
+<section class="parents-section">
+    <div class="container parents-container">
+        <h2 class="section-title" style="color:#B22222;">Nuestra familia</h2>
+        <div class="parents-names">
+            <div class="parent-group">
+                <h3>Padres del Novio</h3>
+                <p>Esteban Saenz<br>y<br>Rosa Isela Zubia</p>
+            </div>
+            <div class="parent-group">
+                <h3>Padres de la Novia</h3>
+                <p>Leonardo Loya<br>y<br>Ma. Dolores Arellano</p>
+            </div>
+        </div>
+        <div class="invitation-text">
+            <i class="fa-regular fa-heart" style="color:#B22222; margin-right: 8px;"></i>
+            Tenemos el honor de invitarlos a celebrar nuestra unión en matrimonio
+        </div>
+    </div>
+</section>
+
+<!-- DIVISOR FLORAL + FOTOS NOSOTROS (fila 1: 3 fotos) -->
+<section class="photo-strip">
+    <div class="container">
+        <h2 class="section-title">Nosotros</h2>
+        <div style="display:flex; justify-content:center; gap:0; flex-wrap:wrap;">
+            <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczM4y672auyaHxzR89nZ1A_Gs6XDpqgqflfaEAMpIBPDuXG24BE-Jo4KfT_vKGy7yJXVdIxV9d85LlJVhVzdlGpyAPKNDluitaHt8DV3aqVtHWOjBrk=w2400" alt="Vicky y Edgar">
+            </div>
+            <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMOkKTTyADHcv2_uwkx6uBmjKUwhGtOjyj5NFXJ97m8AIHxBdMVn-qI06CVTzPga7LTjb7o7dHewqG_Mk2VYge-7Er0RjO2TEdY2YgN8Cy99fYo080=w2400" alt="Vicky y Edgar 2">
+            </div>
+            <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczOcLRRGQhIo_VFdlxhUn6N9Kj_L3JesyWjtRByzAJ1gvLq2qlBgnXX1osX09AaigWGR2YMgyvltxoXWxFPtbHrRyk82ZMcCFAmfjXKZrbM2iEU9mWc=w2400" alt="Vicky y Edgar 3">
+            </div>
+             <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMt7v_xjqN4G-7ab6C-dUIKOFo1G4PnrnZgkBarmdWcAXoKKI1gEWCcpyIunlQBKdZjCGzBhkY5dmANxjqclrIoOVMg5AK7JgvbMiy4Uf4Ugc8i11g=w2400" alt="Vicky y Edgar 6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DETALLES: Ceremonia, Recepción, Código de vestimenta (sin fecha/hora) -->
+<section class="details-section">
+    <div class="container">
+        <h2 class="section-title">Celebración</h2>
+        <div class="info-grid">
+            <!-- Ceremonia -->
+            <div class="info-card">
+                <i class="fas fa-church"></i>
+                <h3>Ceremonia</h3>
+                <p><strong>🕓 4:00 PM</strong></p>
+                <p>El señor de la misericordia</p>
+                <a href="https://www.google.com/maps/place/Parroquia+El+Se%C3%B1or+de+la+Misericordia/@31.720739,-106.4348128,16z/data=!4m6!3m5!1s0x86e75c04e071086d:0xc0f487ecac420257!8m2!3d31.7204835!4d-106.4320984!16s%2Fg%2F1tdg_r9m?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link"><i class="fas fa-map-pin"></i> Ver mapa</a>
+            </div>
+            <!-- Recepción -->
+            <div class="info-card">
+                <i class="fas fa-glass-cheers"></i>
+                <h3>Recepción</h3>
+                <p><strong>🕘 9:00 PM</strong></p>
+                <p>Terraza Arjeri</p>
+                <a href="https://www.google.com/maps/place/Terraza+Arjeri/@31.6720967,-106.3837766,17z/data=!3m1!4b1!4m6!3m5!1s0x86e75d390abed737:0xd73dc506383d6e25!8m2!3d31.6720967!4d-106.3812017!16s%2Fg%2F11twrdh6jj?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link"><i class="fas fa-map-pin"></i> Ver mapa</a>
+            </div>
+            <!-- Código vestimenta -->
+            <div class="info-card">
+                <i class="fa-solid fa-user-tie"></i>
+                <h3>Código de vestimenta</h3>
+                <p>Formal</p>
+                <p>✨ Evitar prendas en color blanco o guinda ✨</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOTO DESTACADA entre detalles y regalos -->
+ <section class="photo-strip">
+    <div class="container">
+        
+        <div style="display:flex; justify-content:center; gap:0; flex-wrap:wrap;">
+            <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMCDNnfObDa30bEhf0gVucchbSr88VuzQJw83rOAAjV1KzrzUhIUJrgtLgDf1H3KI8fASj0_EmVEqhUzgXtU_rw5i-ck-qWR5V2d90s7YV7g63m9yc=w2400" alt="Vicky y Edgar 4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN REGALOS (adicional) -->
+<section class="gift-section">
+    <div class="container">
+        <div class="gift-card">
+            <br>
+            <h3> Opciones de <br style="line-height: 1px;"> regalos</h3>
+            <p>El mejor regalo es su presencia, una aportación monetaria sería un gesto adicional muy valorado:</p>
+            <div class="buzon-icon">
+                 ¡Lluvia de sobres!<br>
+                 <i class="fa-solid fa-gift"></i>
+            </div>
+            <div class="buzon-icon">
+                Transferencia bancaria:
+            </div>
+            <div class="account-number">
+                💳 xxxx_xxxx_xxxx_xxxx
+            </div>
+            <p style="font-size: 0.9rem; margin-top: 18px;">Muchas gracias por acompañarnos en este sueño</p>
+            <br></br>
+            <br></br>
+        </div>
+    </div>
+</section>
+
+<!-- RSVP VÍA WHATSAPP (se mantiene íntegro) -->
+<section class="rsvp-section" id="rsvp">
+    <div class="container">
+        <h2 class="section-title">Confirmar asistencia</h2>
+        <div class="whatsapp-instructions">
+            <i class="fab fa-whatsapp" style="color:#B22222; font-size: 1.5rem; margin-right: 8px;"></i>
+            <strong>Confirmación rápida por WhatsApp</strong><br>
+            Llena el formulario, haz clic en enviar y confirma con un solo mensaje.
+        </div>
+        <div class="rsvp-form">
+            <form id="weddingRsvpForm">
+                <div class="form-group">
+                    <label>Nombre completo *</label>
+                    <input type="text" id="name" required placeholder="¿Quién eres?">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono (WhatsApp) *</label>
+                    <div style="display: flex; gap: 10px; flex-wrap:wrap;">
+                        <select id="countryCode" style="width: auto;"><option value="+52" selected>🇲🇽 +52</option></select>
+                        <input type="tel" id="phone" placeholder="10 dígitos ej: 5512345678" pattern="[0-9]{10}" required style="flex:1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Correo (opcional)</label>
+                    <input type="email" id="email" placeholder="tucorreo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label>Número de invitados *</label>
+                    <select id="guests" required>
+                        <option value="" disabled selected>Selecciona</option>
+                        <option>1 (Solo yo)</option><option>2</option><option>3</option><option>4</option><option>5 o más</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>¿Asistirás?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="yes" required> ¡Sí, feliz!</label>
+                        <label><input type="radio" name="attendance" value="no"> Lo siento, no podré</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje o restricción</label>
+                    <textarea id="message" rows="2" placeholder="Ej. alergias, buenos deseos..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Enviar vía WhatsApp</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FRASE FINAL -->
+ <section class="photo-strip">
+    <div class="container">
+        
+        <div style="display:flex; justify-content:center; gap:0; flex-wrap:wrap;">
+            <div class="photo-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczN97CSzSh577jcAk9Npg2fTerKYQ2RvBv0NI9rtBFO8SyFs6KL68BzqOsbKpr2KggIemZ70CF7iudvzXt076nGzbePXzWLCMVvSRE7aW2NsUv7nuLE=w2400" alt="Vicky y Edgar 4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="hero_footer">
+    <div class="container">
+        <p style="font-size: 25px;">Vicky & Edgar</p>
+        <p style="margin-top: 10px;font-size: 15px;">Con todo el amor, esperamos compartir este día especial contigo</p>
+    </div>
+</footer>
+
+<!-- MODAL PARA WHATSAPP (no se elimina) -->
+<div id="confirmationModal" class="modal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: #000000aa; align-items: center; justify-content: center; z-index: 2000;">
+    <div style="background:#fff; max-width: 450px; padding: 30px; border-radius: 32px; text-align: center;">
+        <i class="fab fa-whatsapp" style="font-size: 3rem; color:#B22222;"></i>
+        <h3 style="color:#B22222; margin: 15px 0;">¡Listo para enviar!</h3>
+        <p id="modalMessage">Tu confirmación se enviará por WhatsApp.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+            <button id="openWhatsAppBtn" class="modal-btn primary" style="background:#B22222; color:white; padding: 10px 24px; border-radius: 60px; border:none;">Abrir WhatsApp</button>
+            <button id="closeModalBtn" style="background:#eee; padding: 10px 24px; border-radius: 60px;">Editar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Countdown 14 Nov 2026 16:00:00
+    const target = new Date('November 14, 2026 16:00:00').getTime();
+    function updateTimer() {
+        const now = Date.now();
+        const diff = target - now;
+        if (diff <= 0) {
+            document.getElementById('days').innerText = '00'; document.getElementById('hours').innerText = '00';
+            document.getElementById('minutes').innerText = '00'; document.getElementById('seconds').innerText = '00';
+            return;
+        }
+        const days = Math.floor(diff / (1000*60*60*24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').innerText = days.toString().padStart(2,'0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2,'0');
+        document.getElementById('minutes').innerText = mins.toString().padStart(2,'0');
+        document.getElementById('seconds').innerText = secs.toString().padStart(2,'0');
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // REPRODUCTOR DE MÚSICA - iframe de Google Drive
+    const musicFrame = document.getElementById('bgMusicFrame');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicSrc = 'https://drive.google.com/file/d/1UEuYeF4-nwlALXGe9HHpWDZDCldkilE7/preview';
+    let isPlaying = true; // iframe carga y reproduce automáticamente
+
+    // Actualizar icono al cargar (asume que está sonando)
+    musicIcon.className = 'fa-solid fa-pause';
+    musicToggle.classList.add('playing');
+
+    musicToggle.addEventListener('click', function() {
+        if (isPlaying) {
+            // Pausar: quitar el src del iframe
+            musicFrame.src = '';
+            musicIcon.className = 'fa-solid fa-music';
+            musicToggle.classList.remove('playing');
+            isPlaying = false;
+        } else {
+            // Reanudar: volver a cargar el iframe
+            musicFrame.src = musicSrc;
+            musicIcon.className = 'fa-solid fa-pause';
+            musicToggle.classList.add('playing');
+            isPlaying = true;
+        }
+    });
+
+    // RSVP FORM + WhatsApp (número real a cambiar)
+    const form = document.getElementById('weddingRsvpForm');
+    const modal = document.getElementById('confirmationModal');
+    const closeModal = document.getElementById('closeModalBtn');
+    const openWhatsApp = document.getElementById('openWhatsAppBtn');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        if(!name) { alert("Escribe tu nombre"); return; }
+        if(!phone || phone.length !== 10) { alert("Teléfono a 10 dígitos"); return; }
+        const guests = document.getElementById('guests').value;
+        const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
+        if(!attendance) { alert("Indica si asistirás"); return; }
+        const email = document.getElementById('email').value;
+        const msg = document.getElementById('message').value;
+        const attendanceText = attendance === 'yes' ? "asistirá con alegría" : "no podrá asistir";
+        let whatsMsg = `*CONFIRMACIÓN BODA VICKY & EDGAR*\n\n`;
+        whatsMsg += `*Nombre:* ${name}\n*Asistencia:* ${attendanceText}\n*Invitados:* ${guests}\n`;
+        if(email) whatsMsg += `*Correo:* ${email}\n`;
+        if(msg) whatsMsg += `*Mensaje:* ${msg}\n`;
+        whatsMsg += `\n📍 14 nov 2026 - Ceremonia 4PM, Recepción 9PM`;
+        const encoded = encodeURIComponent(whatsMsg);
+        // Número de WhatsApp de los novios (ejemplo, cambiar al real)
+        const whatsNumber = "526562818587"; // <--- cambiar al número real de Vicky o Edgar
+        const waUrl = `https://wa.me/${whatsNumber}?text=${encoded}`;
+        openWhatsApp.onclick = () => {
+            window.open(waUrl, '_blank');
+            setTimeout(() => { modal.style.display = 'none'; form.reset(); alert("¡Gracias! No olvides enviar el mensaje en WhatsApp."); }, 500);
+        };
+        modal.style.display = 'flex';
+    });
+    closeModal.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+</script>
+<style>
+    .modal { display: flex; align-items: center; justify-content: center; }
+    .modal-btn { cursor: pointer; transition: 0.2s; }
+    .modal-btn.primary:hover { background-color: #8b1a1a !important; }
+    .fa-user-tie, .fa-money-bill-wave { color: #B22222; }
+    .invitation-text i { font-size: 1.4rem; }
+</style>
+</body>
+</html>
