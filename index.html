@@ -200,11 +200,13 @@
 
         /* GALERÍA DE FOTOS DISTRIBUIDA */
         .photo-strip {
-            padding: 10px 0;
+            padding: 0;
             background: #FFFFFF;
             overflow: hidden;
         }
         .photo-strip .container {
+            max-width: 100%;
+            padding: 0;
             display: flex;
             justify-content: center;
             gap: 0;
@@ -224,7 +226,7 @@
         }
         .photo-strip .photo-item img {
             width: 100%;
-            height: 420px;
+            height: auto;
             object-fit: cover;
             display: block;
         }
@@ -235,14 +237,14 @@
         /* Foto destacada individual */
         .featured-photo {
             text-align: center;
-            padding: 20px 0;
+            padding: 0;
             background: #FFFFFF;
         }
         .featured-photo img {
-            max-width: 500px;
-            width: 90%;
-            border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            max-width: 100%;
+            width: 100%;
+            border-radius: 0;
+            box-shadow: none;
         }
         .featured-photo .photo-caption {
             font-size: 1.1rem;
@@ -440,7 +442,7 @@
             .couple-names { font-size: 2.2rem; }
             .wedding-date { font-size: 1rem; }
             .hero { min-height: 70vh; padding: 150px 15px 30px; }
-            .photo-strip .photo-item img { height: 320px; }
+            .photo-strip .photo-item img { height: auto; }
             .photo-strip .photo-item { max-width: 100%; }
             .featured-photo img { max-width: 90%; }
             .countdown-item { min-width: 70px; padding: 8px; }
@@ -571,7 +573,7 @@
     <div class="container">
         <div class="gift-card">
             <br>
-            <h3> Opciones de <br style="line-height: 1px;"> regalos</h3>
+            <h3> Opciones de regalos</h3>
             <p>El mejor regalo es su presencia, una aportación monetaria sería un gesto adicional muy valorado:</p>
             <div class="buzon-icon">
                  ¡Lluvia de sobres!<br>
@@ -611,10 +613,6 @@
                         <select id="countryCode" style="width: auto;"><option value="+52" selected>🇲🇽 +52</option></select>
                         <input type="tel" id="phone" placeholder="10 dígitos ej: 5512345678" pattern="[0-9]{10}" required style="flex:1">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Correo (opcional)</label>
-                    <input type="email" id="email" placeholder="tucorreo@ejemplo.com">
                 </div>
                 <div class="form-group">
                     <label>Número de invitados *</label>
