@@ -733,6 +733,7 @@
         document.removeEventListener('click', startOnInteraction, true);
         document.removeEventListener('touchstart', startOnInteraction, true);
         document.removeEventListener('touchend', startOnInteraction, true);
+        document.removeEventListener('touchmove', startOnInteraction, true);
         document.removeEventListener('pointerdown', startOnInteraction, true);
         document.removeEventListener('keydown', startOnInteraction, true);
     }
@@ -744,6 +745,7 @@
         document.addEventListener('click', startOnInteraction, true);
         document.addEventListener('touchstart', startOnInteraction, true);
         document.addEventListener('touchend', startOnInteraction, true);
+        document.removeEventListener('touchmove', startOnInteraction, true);
         document.addEventListener('pointerdown', startOnInteraction, true);
         document.addEventListener('keydown', startOnInteraction, true);
     });
