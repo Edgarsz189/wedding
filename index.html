@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,7 +19,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
             background-color: #FFFFFF;   /* blanco de fondo */
             color: #000000;              /* negro para letras generales */
             line-height: 2.5;
@@ -189,8 +190,8 @@
         .invitation-text {
             font-size: 1.5rem;
             font-style: italic;
-            margin-top: 35px;
-            padding: 20px;
+            margin-top: 10px;
+            padding: 10px;
             background: transparent;
             border-radius: 40px;
             display: inline-block;
@@ -316,7 +317,11 @@
 
         /* SECCIÓN REGALOS */
         .gift-section {
-            background: #FFFFFF;
+            background: linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
+                        url('https://lh3.googleusercontent.com/pw/AP1GczMgcqPQr21VSrwFtxVDtrtjBm6QSWHjGL2ovtzBVVol5OVfI3So97DdQVAw7X9YxQtkFS0CTl2Yq0mTqB6HDWL-rFJhI7tJWYyahv6ob0drecYjhAg=w2400');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             padding: 40px 0 60px;
         }
         .gift-card {
@@ -326,11 +331,7 @@
             
             padding: 35px 30px;
             text-align: center;
-            background: linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
-                        url('https://lh3.googleusercontent.com/pw/AP1GczMgcqPQr21VSrwFtxVDtrtjBm6QSWHjGL2ovtzBVVol5OVfI3So97DdQVAw7X9YxQtkFS0CTl2Yq0mTqB6HDWL-rFJhI7tJWYyahv6ob0drecYjhAg=w2400');
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: none;
             
         }
         .gift-card h3 {
@@ -482,7 +483,7 @@
     <i class="fa-solid fa-music" id="musicIcon"></i>
 </button>
 
-<!-- SECCIÓN PADRES (intercambio de nombres según lo solicitado) -->
+<!-- SECCIÓN PADRES -->
 <section class="parents-section">
     <div class="container parents-container">
         <h2 class="section-title" style="color:#B22222;">Nuestra familia</h2>
